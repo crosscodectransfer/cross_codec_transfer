@@ -22,7 +22,7 @@
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
 
-    html, body { height: 100%; }
+    html { height: 100%; }
 
     body {
       font-family: "Inter", system-ui, -apple-system, sans-serif;
@@ -195,6 +195,13 @@
       transition: border-color 0.2s, color 0.2s;
     }
     .links a:hover { border-color: rgba(255,255,255,0.25); color: var(--fg); }
+    .links a.live {
+      cursor: pointer;
+      color: var(--fg);
+      border-color: rgba(124, 92, 255, 0.45);
+      background: linear-gradient(100deg, rgba(124, 92, 255, 0.18), rgba(34, 211, 238, 0.12));
+    }
+    .links a.live:hover { border-color: var(--accent-b); }
     .links a small {
       font-family: "JetBrains Mono", monospace;
       font-size: 11px;
@@ -207,6 +214,210 @@
       font-size: 13px;
       color: var(--muted);
       opacity: 0.7;
+    }
+
+    /* Concept figure */
+    .concept {
+      --c0: #818cf8;
+      --c1: #22d3ee;
+      --c2: #f472b6;
+      --train: #fbbf24;
+      text-align: left;
+      margin: 0 auto 44px;
+    }
+    .concept h2 {
+      font-size: 13px;
+      font-family: "JetBrains Mono", monospace;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    .concept .tagline { text-align: center; }
+    .concept .links { margin-bottom: 32px; }
+    .fig {
+      display: grid;
+      grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.35fr);
+      gap: 14px;
+      padding: 14px;
+      border-radius: 20px;
+      background: rgba(13, 16, 32, 0.6);
+      border: 1px solid var(--border);
+      backdrop-filter: blur(8px);
+    }
+    .fig .right { display: flex; flex-direction: column; min-width: 0; }
+    .fp {
+      border-radius: 14px;
+      border: 1px solid rgba(255,255,255,0.07);
+      background: var(--card);
+      padding: 16px;
+      min-width: 0;
+    }
+    .fp h3 {
+      font-size: 14px;
+      font-weight: 700;
+      margin-bottom: 14px;
+      color: var(--fg);
+    }
+    .fp h3 .tag {
+      font-family: "JetBrains Mono", monospace;
+      font-weight: 500;
+      color: var(--accent-b);
+      margin-right: 6px;
+    }
+    var { font-style: italic; font-family: "Times New Roman", Georgia, serif; font-size: 1.08em; }
+    sub { font-size: 0.72em; }
+
+    /* (a) codec interfaces */
+    .pa { display: flex; flex-direction: column; }
+    .speech {
+      display: flex; align-items: center; justify-content: center; gap: 10px;
+      font-size: 13px; font-weight: 600;
+    }
+    .speech .mini { display: flex; align-items: center; gap: 2px; height: 24px; }
+    .speech .mini i { width: 2px; border-radius: 1px; background: var(--fg); opacity: 0.85; }
+    .branch { position: relative; height: 22px; margin-top: 6px; }
+    .branch::before {
+      content: ""; position: absolute; top: 0; left: 50%; width: 1px; height: 8px; background: var(--muted);
+    }
+    .branch::after {
+      content: ""; position: absolute; top: 8px; left: 16.67%; right: 16.67%; height: 1px; background: var(--muted);
+    }
+    .cols { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; flex: 1; }
+    .col { display: flex; flex-direction: column; align-items: center; gap: 6px; text-align: center; }
+    .col > .v:first-child { margin-top: -14px; }
+    .codec {
+      width: 100%;
+      padding: 7px 4px;
+      border-radius: 9px;
+      border: 1.5px solid var(--c);
+      font-weight: 700;
+      font-size: 13px;
+      background: color-mix(in srgb, var(--c) 10%, transparent);
+    }
+    .tok {
+      display: grid;
+      gap: 1px;
+      width: 72px;
+      padding: 3px;
+      border-radius: 4px;
+      background: rgba(255,255,255,0.03);
+    }
+    .tok i { display: block; height: 4px; border-radius: 1px; background: var(--c); }
+    .dim { font-size: 11px; color: var(--muted); line-height: 1.3; }
+    .stack-lbl {
+      font-family: "JetBrains Mono", monospace; font-size: 10.5px; color: var(--muted);
+      display: flex; flex-direction: column; align-items: center; gap: 2px;
+    }
+    .native { font-size: 11px; color: var(--muted); font-style: italic; margin-top: 4px; }
+
+    /* arrows */
+    .v { width: 1px; height: 14px; background: var(--muted); position: relative; flex: none; margin: 0 auto; }
+    .v::after {
+      content: ""; position: absolute; left: -3px; bottom: -1px;
+      border-left: 3.5px solid transparent; border-right: 3.5px solid transparent; border-top: 5px solid var(--muted);
+    }
+    .v.up::after { bottom: auto; top: -1px; border-top: 0; border-bottom: 5px solid var(--muted); }
+    .h { height: 1px; width: 22px; background: var(--muted); position: relative; flex: none; align-self: center; }
+    .h::after {
+      content: ""; position: absolute; right: -1px; top: -3px;
+      border-top: 3.5px solid transparent; border-bottom: 3.5px solid transparent; border-left: 5px solid var(--muted);
+    }
+
+    /* (b)(c) model diagrams */
+    .flow {
+      display: grid;
+      grid-template-columns: minmax(0, 1.45fr) 22px minmax(0, 1fr);
+      grid-template-areas: "top . dec" "rest . chain";
+      column-gap: 8px;
+      --reach: 38px; /* arrow column + both gaps */
+    }
+    /* Arrow leaves the top model block and lands on the depth Transformer. */
+    .flow .top { grid-area: top; align-self: end; position: relative; display: flex; flex-direction: column; justify-content: center; }
+    .flow .top::before, .flow .top::after { content: ""; position: absolute; top: 50%; }
+    .flow .top::before {
+      left: calc(100% + 1.5px); width: calc(var(--reach) - 3px); height: 1px; background: var(--muted);
+    }
+    .flow .top::after {
+      left: calc(100% + var(--reach) - 6.5px); margin-top: -3px;
+      border-top: 3.5px solid transparent; border-bottom: 3.5px solid transparent; border-left: 5px solid var(--muted);
+    }
+    .flow .dec { grid-area: dec; display: flex; flex-direction: column; justify-content: center; }
+    .flow .rest { grid-area: rest; min-width: 0; display: flex; flex-direction: column; gap: 4px; padding-top: 4px; }
+    .flow .chain { grid-area: chain; min-width: 0; display: flex; flex-direction: column; }
+    .blk {
+      border-radius: 9px;
+      padding: 8px 10px;
+      font-size: 12.5px;
+      font-weight: 600;
+      text-align: center;
+      line-height: 1.3;
+      border: 1.5px solid rgba(238, 240, 255, 0.55);
+      background: rgba(255,255,255,0.03);
+    }
+    .blk.big { padding: 22px 10px; }
+    .blk.train {
+      border-color: var(--train);
+      background: rgba(251, 191, 36, 0.14);
+      color: #fde68a;
+    }
+    .blk.frozen { border-style: solid; color: var(--fg); }
+    .blk.frozen::before { content: "\2744\FE0E  "; color: #a5b4fc; }
+    .blk.codes { border-color: var(--c); background: color-mix(in srgb, var(--c) 28%, transparent); color: #fff; }
+    .blk.out { border-color: var(--c); background: transparent; font-weight: 500; }
+    .inputs { display: flex; gap: 4px; justify-content: center; margin-top: -4px; flex-wrap: wrap; }
+    .inp { display: flex; flex-direction: column; align-items: center; gap: 0; }
+    .inp .v { height: 10px; }
+    .pill {
+      font-size: 11.5px;
+      padding: 3px 7px;
+      border-radius: 999px;
+      border: 1.5px solid rgba(238, 240, 255, 0.55);
+      white-space: nowrap;
+      margin-top: 2px;
+    }
+    .pill.codes { border-color: var(--c); background: color-mix(in srgb, var(--c) 28%, transparent); font-weight: 600; }
+    .inp-note { font-size: 10.5px; color: var(--muted); text-align: center; margin-top: 4px; }
+
+    .reuse {
+      display: flex; align-items: center; gap: 10px;
+      padding: 8px 0 8px 24px;
+      font-family: "JetBrains Mono", monospace; font-size: 11px; color: var(--muted);
+    }
+    .reuse::before {
+      content: ""; width: 0; height: 22px; border-left: 1.5px dashed var(--muted);
+    }
+
+    .legend {
+      display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px 12px;
+      margin-top: auto; padding-top: 14px; border-top: 1px solid rgba(255,255,255,0.07);
+      font-size: 12px; color: var(--muted);
+    }
+    .cols { margin-bottom: 18px; }
+    .legend span { display: inline-flex; align-items: center; gap: 7px; }
+    .legend b {
+      width: 18px; height: 12px; border-radius: 4px; border: 1.5px solid var(--c, rgba(238,240,255,0.55));
+      background: color-mix(in srgb, var(--c, transparent) 35%, transparent);
+    }
+    .legend b.pill-sw { border-radius: 999px; }
+    .caption {
+      margin-top: 14px; font-size: 13.5px; color: var(--muted); line-height: 1.65; max-width: 760px; margin-inline: auto;
+    }
+    .caption strong { color: var(--fg); font-weight: 600; }
+
+    @media (max-width: 760px) {
+      .fig { grid-template-columns: minmax(0, 1fr); }
+    }
+    @media (max-width: 460px) {
+      .flow { grid-template-columns: minmax(0, 1.25fr) 14px minmax(0, 1fr); column-gap: 5px; --reach: 24px; }
+      .fp { padding: 14px 12px; }
+      .blk { font-size: 11.5px; padding: 7px 6px; }
+      .blk.big { padding: 16px 6px; }
+      .pill { font-size: 10.5px; padding: 2px 6px; }
+      .inputs { row-gap: 2px; }
+      .tok { width: 60px; }
     }
 
     @media (prefers-reduced-motion: reduce) {
@@ -229,16 +440,129 @@
 
     <div class="wave" aria-hidden="true" id="wave"></div>
 
-    <p class="tagline">
-      The paper and audio samples are on the way. Check back soon.
-    </p>
+    <section class="concept" aria-labelledby="concept-title">
+      <h2 id="concept-title">How cross-codec transfer works</h2>
 
-    <div class="progress" aria-hidden="true"></div>
+      <p class="tagline">
+        Audio samples are now online for Qwen3-TTS and Moshi. The paper is on the way.
+      </p>
 
-    <div class="links">
-      <a aria-disabled="true">Paper <small>soon</small></a>
-      <a aria-disabled="true">Audio Samples <small>soon</small></a>
-    </div>
+      <div class="progress" aria-hidden="true"></div>
+
+      <div class="links">
+        <a class="live" href="qwen3-tts/">Qwen3-TTS Samples <small>&rarr;</small></a>
+        <a class="live" href="moshi/">Moshi Samples <small>&rarr;</small></a>
+        <a aria-disabled="true">Paper <small>soon</small></a>
+      </div>
+
+      <div class="fig">
+        <!-- (a) -->
+        <div class="fp pa">
+          <h3><span class="tag">(a)</span>Codec interfaces</h3>
+          <div class="speech">Speech <var>x</var> <span class="mini" id="mini"></span></div>
+          <div class="branch" aria-hidden="true"></div>
+          <div class="cols">
+            <div class="col" style="--c: var(--c0)">
+              <span class="v"></span>
+              <div class="codec">Codec 0</div>
+              <div class="tok" data-rows="4" data-cols="6" data-k="4"></div>
+              <span class="dim"><var>K</var><sub>0</sub> × <var>r</var><sub>0</sub><var>T</var></span>
+              <span class="native">native rate</span>
+            </div>
+            <div class="col" style="--c: var(--c1)">
+              <span class="v"></span>
+              <div class="codec">Codec 1</div>
+              <div class="tok" data-rows="2" data-cols="24" data-k="2"></div>
+              <span class="dim"><var>K</var><sub>1</sub> × <var>r</var><sub>1</sub><var>T</var></span>
+              <span class="stack-lbl"><span class="v"></span>stack</span>
+              <div class="tok" data-rows="8" data-cols="6" data-k="2"></div>
+              <span class="dim">(<var>r</var><sub>1</sub>/<var>r</var><sub>0</sub>)<var>K</var><sub>1</sub><br>× <var>r</var><sub>0</sub><var>T</var></span>
+            </div>
+            <div class="col" style="--c: var(--c2)">
+              <span class="v"></span>
+              <div class="codec">Codec 2</div>
+              <div class="tok" data-rows="3" data-cols="12" data-k="3"></div>
+              <span class="dim"><var>K</var><sub>2</sub> × <var>r</var><sub>2</sub><var>T</var></span>
+              <span class="stack-lbl"><span class="v"></span>stack</span>
+              <div class="tok" data-rows="6" data-cols="6" data-k="3"></div>
+              <span class="dim">(<var>r</var><sub>2</sub>/<var>r</var><sub>0</sub>)<var>K</var><sub>2</sub><br>× <var>r</var><sub>0</sub><var>T</var></span>
+            </div>
+          </div>
+          <div class="legend">
+            <span><b style="--c: var(--train)"></b>Trainable block</span>
+            <span><b></b>Pretrained block</span>
+            <span><b class="pill-sw"></b>Text token</span>
+            <span><b style="--c: var(--c0)"></b>Codec 0 token</span>
+            <span><b style="--c: var(--c1)"></b>Codec 1 token</span>
+            <span><b style="--c: var(--c2)"></b>Codec 2 token</span>
+          </div>
+        </div>
+
+        <div class="right">
+          <!-- (b) -->
+          <div class="fp" style="--c: var(--c0)">
+            <h3><span class="tag">(b)</span>Pretrained with Codec 0</h3>
+            <div class="flow">
+              <div class="blk big top">Pretrained Temporal Transformer</div>
+              <div class="blk dec">Pretrained Depth Transformer</div>
+              <div class="rest">
+                <div class="inputs">
+                  <span class="inp"><span class="v up"></span><span class="pill">Text</span></span>
+                  <span class="inp"><span class="v up"></span><span class="pill">to</span></span>
+                  <span class="inp"><span class="v up"></span><span class="pill">read</span></span>
+                  <span class="inp"><span class="v up"></span><span class="pill codes">Codec 0 Tokens</span></span>
+                </div>
+              </div>
+              <div class="chain">
+                <span class="v"></span>
+                <div class="blk codes">Predicted Codec 0 Codes</div>
+                <span class="v"></span>
+                <div class="blk out">Codec 0 Decoder</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="reuse">reuse pretrained weights</div>
+
+          <!-- (c) -->
+          <div class="fp" style="--c: var(--c1)">
+            <h3><span class="tag">(c)</span>Fine-tuning with a frozen backbone</h3>
+            <div class="flow">
+              <div class="blk train top">Trainable Upper Layers</div>
+              <div class="blk train dec">Trainable Depth Transformer</div>
+              <div class="rest">
+                <div class="blk frozen">Frozen Pretrained Layers</div>
+                <div class="blk train">Trainable Lower Layers</div>
+                <div class="inputs">
+                  <span class="inp"><span class="v up"></span><span class="pill">Text</span></span>
+                  <span class="inp"><span class="v up"></span><span class="pill">to</span></span>
+                  <span class="inp"><span class="v up"></span><span class="pill">read</span></span>
+                  <span class="inp"><span class="v up"></span><span class="pill codes">Codec 1 Tokens</span></span>
+                </div>
+                <div class="inp-note">original rate or stacked</div>
+              </div>
+              <div class="chain">
+                <span class="v"></span>
+                <div class="blk codes">Predicted Codec 1 Codes</div>
+                <span class="v"></span>
+                <div class="blk out">Unstack + Codec 1 Decoder</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      <p class="caption">
+        <strong>(a)</strong> Each codec maps speech <var>x</var> of duration <var>T</var> to <var>r</var><sub><var>i</var></sub><var>T</var>
+        frames with <var>K</var><sub><var>i</var></sub> codebooks. Tokens are used at their native rate or stacked to match
+        Codec 0&rsquo;s rate <var>r</var><sub>0</sub>.
+        <strong>(b)</strong> The speech language model is pretrained on text and Codec 0 tokens, with a depth Transformer predicting
+        the codes within each frame.
+        <strong>(c)</strong> Transfer freezes the middle Transformer layers and trains the outer layers, the target-codec
+        embeddings and the depth Transformer on Codec 1 tokens.
+      </p>
+    </section>
 
     <footer>&copy; 2026</footer>
   </main>
@@ -254,6 +578,27 @@
       s.style.opacity = (0.35 + d * 0.65).toFixed(2);
       wave.appendChild(s);
     }
+    const mini = document.getElementById("mini");
+    for (let i = 0; i < 22; i++) {
+      const b = document.createElement("i");
+      b.style.height = `${(25 + 75 * Math.abs(Math.sin(i * 1.7) * Math.cos(i * 0.6))).toFixed(0)}%`;
+      mini.appendChild(b);
+    }
+
+    // Token grids: rows are codebooks, columns are frames. Stacked grids
+    // shade each group of k rows by which source frame it came from.
+    document.querySelectorAll(".tok").forEach((g) => {
+      const rows = +g.dataset.rows, cols = +g.dataset.cols, k = +g.dataset.k;
+      g.style.gridTemplateColumns = `repeat(${cols}, 1fr)`;
+      for (let r = 0; r < rows; r++) {
+        const op = (1 - Math.floor(r / k) * 0.2).toFixed(2);
+        for (let c = 0; c < cols; c++) {
+          const cell = document.createElement("i");
+          cell.style.opacity = op;
+          g.appendChild(cell);
+        }
+      }
+    });
   </script>
 </body>
 </html>
